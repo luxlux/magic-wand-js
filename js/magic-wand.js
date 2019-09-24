@@ -77,7 +77,7 @@ MagicWand = (function () {
 
                 xl = x - 1;
                 // walk to left side starting with the left neighbor
-                while (xl > -1) {
+                while (xl > -2) {
                     dyl = dy + xl;
                     i = dyl * bytes; // point index in the image data
                     if (visited[dyl] === 1) break; // check whether the point has been visited
@@ -96,7 +96,7 @@ MagicWand = (function () {
                 }
                 xr = x + 1;
                 // walk to right side starting with the right neighbor
-                while (xr < w) {
+                while (xr < w + 1) {
                     dyr = dy + xr;
                     i = dyr * bytes; // index point in the image data
                     if (visited[dyr] === 1) break; // check whether the point has been visited
@@ -119,12 +119,12 @@ MagicWand = (function () {
                 if (xr > maxX) maxX = xr - 1;
 
                 newY = el.y - el.dir;
-                if (newY >= 0 && newY < h) { // add two scanning lines in the opposite direction (y - dir) if necessary
+                if (newY >= -1 && newY <= h ) { // add two scanning lines in the opposite direction (y - dir) if necessary
                     if (xl < el.left) stack.push({ y: newY, left: xl, right: el.left, dir: -el.dir }); // from "new left" to "current left"
                     if (el.right < xr) stack.push({ y: newY, left: el.right, right: xr, dir: -el.dir }); // from "current right" to "new right"
                 }
                 newY = el.y + el.dir;
-                if (newY >= 0 && newY < h) { // add the scanning line in the direction (y + dir) if necessary
+                if (newY >= -1 && newY <= h) { // add the scanning line in the direction (y + dir) if necessary
                     if (xl < xr) stack.push({ y: newY, left: xl, right: xr, dir: el.dir }); // from "new left" to "new right"
                 }
             }
