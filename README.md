@@ -1,6 +1,8 @@
 magic-wand-js
 =============
 
+My edit to the original project: Floodfill now works also at the inner 1px at borders of the image.
+#
 Magic wand tool (fuzzy selection) by color for Javascript
 
 Live example: http://jsfiddle.net/Tamersoul/dr7Dw/
